@@ -1,0 +1,31 @@
+# Use an official Python runtime as the base image
+FROM python:3.10
+
+# Set the environment to user in the container
+ENV PYTHONFAULTHANDLER=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONHASHSEED=random\
+    PIP_NO_CACHE_DIR=off \
+    PIP_DEFAULT_TIMEOUT=100 \
+    FLASK_APP=app \
+    DATABASE_URI=postgresql://root:password@postgres_db:5432/consumer_db
+
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file into the container
+COPY requirements.txt .
+
+# Install the project dependencies
+RUN pip3 install -r requirements.txt
+
+# Copy the project code into the container
+COPY . .
+
+# Expose the port that the Flask app will run on
+EXPOSE 5000
+
+# Set the command to run the Flask app
+# CMD ["python", "app.py"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
