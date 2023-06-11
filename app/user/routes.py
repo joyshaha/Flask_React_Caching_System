@@ -1,10 +1,4 @@
-from flask import (
-    render_template,
-    request,
-    redirect,
-    url_for,
-    jsonify,
-)
+from flask import request
 from app.user import bp
 from app.user.models import User
 from app.extensions import db, redis_client
