@@ -1,7 +1,7 @@
 from flask import Flask
 
 from config import Config
-from app.extensions import db
+from app.extensions import db, cors, bcrypt, migrate
 
 
 def create_app(config_class=Config):
@@ -10,6 +10,9 @@ def create_app(config_class=Config):
     # app.config.from_pyfile('settings.py')
 
     db.init_app(app)
+    cors.init_app(app)
+    bcrypt.init_app(app)
+    migrate.init_app(app, db)
 
     from app.user import bp as user_bp
     app.register_blueprint(user_bp)

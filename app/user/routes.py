@@ -28,18 +28,21 @@ def get_users():
 @bp.route('/create', methods=['POST'])
 def add_user():
     if request.method == 'POST':
-        name = request.form.get('username')
-        email = request.form.get('email')
-        print(name, email)
-        # data = request.values
-        # print(data)
-        # data_name = data.get('username')
-        # data_email = data.get('email')
-        # print(data_name, data_email)
+        # name = request.form.get('username')
+        # email = request.form.get('email')
+        # print(name, email)
+        data = request.get_json()
+        name = data.get('username')
+        email = data.get('email')
+        # print(name, email)
         try:
             user = User(username=name, email=email)
             db.session.add(user)
             db.session.commit()
+
+            # user = user.__dict__
+            # del user["_sa_instance_state"]
+            # result = user
 
             _ = redis_client.delete('users')  # output 1/0
             # print(_)
@@ -54,9 +57,12 @@ def add_user():
 @bp.route('/<id>/update', methods=['PUT'])
 def update_user(id):
     if request.method == 'PUT':
-        name = request.form.get('username')
-        email = request.form.get('email')
+        # name = request.form.get('username')
+        # email = request.form.get('email')
         # print(name, email)
+        data = request.get_json()
+        name = data.get('username')
+        email = data.get('email')
         try:
             db.session.query(User).filter_by(id=id).update(
                 dict(username=name, email=email)
