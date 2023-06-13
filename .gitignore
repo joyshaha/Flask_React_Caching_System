@@ -187,4 +187,5 @@ dist-ssr
 
 # custom
 web/**/.gitignore
+.idea/*
 

@@ -1,9 +1,36 @@
 version: '3.7'
+
+# x-volumes: &env-volume
+#   API_URL: "http://localhost:5000/"
+
 services:
+  web:
+     build:
+       context: ./web/web-app/
+       dockerfile: Dockerfile
+     image: react-app
+     container_name: web_service
+     command: ["npm", "run", "dev"]
+     ports:
+       - 5173:5173
+     expose:
+       - 5173
+#     environment:
+#       <<: *env-volume
+     volumes:
+       - ./:/web
+#     tty: true
+     depends_on:
+#       - db
+#       - redis
+       - app
+#     networks:
+#       - backend
+
   app:
     build:
       context: .
-      dockerfile: Dockerfile-compose
+      dockerfile: Dockerfile
     image: flask-app
     container_name: api_service
     command: ["flask", "run", "--host=0.0.0.0", "--port=5000", "--reload"]
@@ -11,6 +38,7 @@ services:
       - 5000:5000
     expose:
       - 5000
+#    entrypoint: /app/entrypoint.sh
     env_file: .env
     volumes:
       - ./:/app
@@ -19,6 +47,7 @@ services:
       - redis
     networks:
       - backend
+
   db:
     image: postgres:latest
 #    restart: always

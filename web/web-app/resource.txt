@@ -1,0 +1,2 @@
+1. https://dev.to/ysmnikhil/how-to-build-with-react-or-vue-with-vite-and-docker-1a3l
+2. https://plainenglish.io/blog/step-by-step-guide-to-dockerize-react-app-created-using-vite
