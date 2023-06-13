@@ -1,0 +1,51 @@
+# install yarn
+1. sudo apt-get -remove yarn
+2. curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+3. sudo apt-get update && sudo apt-get install yarn
+4. yarn --version
+
+
+# install nvm
+1. wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+2. nvm -v
+3. nvm list-remote
+4. nvm install node
+5. node -v
+
+6. more version
+    1. nvm install --lts
+    2. nvm install 14.19.3
+    
+7. nvm ls
+
+8. change active version
+    1. nvm use 16.15.0
+    2. nvm alias default 16.15.0
+
+
+# vite project
+1. npm create vite@latest  (with npm)
+2. yarn create vite        (with yarn)
+3. cd <project-directory>
+4. npm install
+
+
+# run project
+1. yarn dev     (with yarn)
+2. npm run dev  (with npm)
+
+
+Dockerized with dockerfile
+1. docker build -t <image-name> .
+2. docker run -d --rm -p 5173:5173 --name <container-name> <image-name>
+
+Dockerized with compose
+1. docker-compose up --build --no-recreate -d
+2. docker-compose up -d
+3. docker-compose ps
+4. docker exec -it vite_docker sh
+5. npm i && npm run dev
+
+Makefile usability
+1. make first (first time)
+2. make start (every time)
