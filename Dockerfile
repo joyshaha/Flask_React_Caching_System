@@ -4,7 +4,7 @@ FROM python:3.10
 # Set the environment to user in the container
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
-    PYTHONHASHSEED=random\
+    PYTHONHASHSEED=random \
     PIP_NO_CACHE_DIR=off \
     PIP_DEFAULT_TIMEOUT=100 \
     FLASK_APP=app \
@@ -21,11 +21,6 @@ COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
 # Copy the project code into the container
-COPY . .
+ADD . ./
 
-# Expose the port that the Flask app will run on
-EXPOSE 5000
-
-# Set the command to run the Flask app
-# CMD ["python", "app.py"]
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
