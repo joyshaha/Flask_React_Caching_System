@@ -6,10 +6,11 @@ Flask(python), React, Database(postgres), In-memory-Cache(Redis), Docker and Doc
 
 **Four Tier Application**:
 
-[//]: # (![]&#40;https://github.com/joyshaha/project/assets/main/tier_4.png?raw=true&#41;)
-
-<img src='https://github.com/joyshaha/project/assets/main/tier_4.png?raw=true'/>
-
+<br />
+<figure><img src="./assets/tier_4.png" alt="tier_4.png">
+<figcaption align="center">Fig: Full-stack System</figcaption>
+</figure>
+<br />
 
 ### Just clone the repo and navigate to the top directory and simply run the below command:
 * `docker-compose up --build -d`
